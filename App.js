@@ -20,9 +20,7 @@ const App = () => {
       <Stack.Navigator initialRouteName='SignUp'>
 
       <Stack.Screen name="SignIn" component={SignIn} 
-        options={
-          
-        }
+  
       />
       <Stack.Screen name="SignUp" component={Signup} />
 
