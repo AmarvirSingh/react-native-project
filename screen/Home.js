@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
-export default function Home({navigation}){
+export default function Home({route, navigation}){
 
 
   const [isfetching, setisfetching] = useState(false)
@@ -43,6 +43,10 @@ export default function Home({navigation}){
 
 
     <View style={styles.container}>
+
+    <View>
+      <Text> Welcome {JSON.stringify(route.params.user)}</Text>
+    </View>
       <TouchableOpacity 
       onPress= {() => navigation.navigate('AddTask')}>
         <Text style={styles.addBtn}> Add Task </Text>

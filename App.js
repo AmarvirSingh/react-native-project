@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import {useNavigation} from '@react-navigation/core'
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Button, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screen/Home'
@@ -27,7 +27,9 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={Home}
-            
+          options={{
+            headerLeft: null
+          }}            
           />
         <Stack.Screen name="Task" component={Task} />
         <Stack.Screen name="AddTask" component={AddTask} />        

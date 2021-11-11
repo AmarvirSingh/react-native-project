@@ -1,15 +1,34 @@
 import React,{useState} from 'react'
 import { View, Text, StyleSheet, TextInput, Button, Platform, StatusBar, SafeAreaView, TouchableOpacity } from 'react-native'
-import {firebase} from '../storage/fire'
+import {auth } from '../storage/fire'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+
+
+
 export default function Signup({ navigation }) {
 
     const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
     const [Username, setUsername] = useState('')
 
-const onPressREgistration = ()  => {
 
-    fireba
+const onPressREgistration = async (userEmail, userPassword)  => {
+    console.log('HERE YOU ARE');
+    try {
+        await createUserWithEmailAndPassword(auth,userEmail, userPassword)
+        .then(creadentials =>{
+            const user = creadentials.user.email;
+            console.log(user);
+            if(user != null){
+                navigation.push('Home',{
+                    'user' : user
+                })
+            }
+        }).catch(err => alert(err.message))
+        
+    } catch (error) {
+        alert('error')
+    }
 
 
 
@@ -38,7 +57,7 @@ const onPressREgistration = ()  => {
                     style={styles.btn}
                     color='red'
                     title='Sign Up'
-                    onPress={() => {console.log(Email)}}
+                    onPress={() => {onPressREgistration(Email, Password)}}
                 />
             </View>
             <View>
